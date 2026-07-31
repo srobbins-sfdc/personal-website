@@ -11,6 +11,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [mdx(), sitemap()],
+  compressHTML: false,
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',
