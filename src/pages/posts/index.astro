@@ -1,0 +1,146 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+// Hardcoded sample posts until content collection entries are available
+const allPosts = [
+  {
+    title: "Building AI Agents That Actually Work",
+    description: "Lessons learned from building production-grade AI agents — from prompt engineering to tool calling and observability.",
+    date: new Date("2026-06-15"),
+    tags: ["AI", "Engineering"],
+    url: "/posts/building-ai-agents",
+    image: "",
+  },
+  {
+    title: "Why I Switched to Astro for My Personal Site",
+    description: "A deep dive into why Astro won out over Next.js, Hugo, and plain HTML for this very website.",
+    date: new Date("2026-05-20"),
+    tags: ["Web Dev"],
+    url: "/posts/why-astro",
+    image: "",
+  },
+  {
+    title: "Scaling LLM Inference with vLLM",
+    description: "A practical guide to deploying and scaling large language models in production using vLLM.",
+    date: new Date("2026-04-10"),
+    tags: ["AI", "DevOps"],
+    url: "/posts/scaling-llm-inference",
+    image: "",
+  },
+  {
+    title: "The Art of Prompt Engineering",
+    description: "Systematic approaches to crafting prompts that get reliable, high-quality results from LLMs.",
+    date: new Date("2026-03-05"),
+    tags: ["AI", "Tutorial"],
+    url: "/posts/art-of-prompt-engineering",
+    image: "",
+  },
+  {
+    title: "Containerization Best Practices for ML Workloads",
+    description: "How to build efficient, reproducible Docker images for machine learning applications.",
+    date: new Date("2026-02-18"),
+    tags: ["DevOps", "Engineering"],
+    url: "/posts/containerization-ml",
+    image: "",
+  },
+  {
+    title: "Open Source Lessons Learned",
+    description: "What maintaining popular open source projects has taught me about community, code, and sustainability.",
+    date: new Date("2026-01-22"),
+    tags: ["Open Source", "Career"],
+    url: "/posts/open-source-lessons",
+    image: "",
+  },
+];
+
+// Simple pagination
+const page = 1;
+const pageSize = 4;
+const totalPages = Math.ceil(allPosts.length / pageSize);
+const paginatedPosts = allPosts.slice(0, page * pageSize);
+---
+
+<BaseLayout title="Posts — Scott Robbins" description="Blog posts about AI, software engineering, and building things that matter.">
+  <section class="section">
+    <div class="mx-auto max-w-5xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl">
+        Posts
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+        Thoughts on AI, software engineering, and building things that matter.
+      </p>
+
+      <!-- Tag filter links -->
+      <div class="mt-8 flex flex-wrap gap-2">
+        <a
+          href="/posts"
+          class="rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-medium text-white"
+        >
+          All
+        </a>
+        {["AI", "Engineering", "Web Dev", "DevOps", "Open Source", "Career", "Tutorial"].map((tag) => (
+          <a
+            href={`/posts/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+            class="rounded-full bg-[var(--color-accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)] hover:text-white"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+
+      <!-- Posts grid -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {paginatedPosts.map((post) => (
+          <PostCard
+            title={post.title}
+            description={post.description}
+            date={post.date}
+            tags={post.tags}
+            url={post.url}
+            image={post.image || undefined}
+          />
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <nav class="mt-12 flex items-center justify-center gap-4" aria-label="Pagination">
+          <span class="inline-flex items-center gap-1 rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-text-dim)]">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+            Previous
+          </span>
+
+          <div class="flex gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <a
+                href={p === 1 ? "/posts" : `/posts/page/${p}`}
+                class={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium transition-colors ${
+                  p === page
+                    ? "bg-[var(--color-accent)] text-white"
+                    : "border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                }`}
+              >
+                {p}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href={page < totalPages ? `/posts/page/${page + 1}` : "#"}
+            class={`inline-flex items-center gap-1 rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] ${
+              page >= totalPages ? "pointer-events-none text-[var(--color-text-dim)]" : "text-[var(--color-text-muted)]"
+            }`}
+          >
+            Next
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>

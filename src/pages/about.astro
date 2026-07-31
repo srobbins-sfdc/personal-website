@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About — Scott Robbins" description="Learn more about Scott Robbins, his background, skills, and what drives him.">
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl">
+        About Me
+      </h1>
+
+      <!-- Intro -->
+      <div class="mt-10 flex flex-col gap-10 sm:flex-row sm:items-start">
+        <!-- Headshot placeholder -->
+        <div class="shrink-0">
+          <img
+            src="/images/placeholder-headshot.svg"
+            alt="Scott Robbins"
+            width="200"
+            height="200"
+            class="h-48 w-48 rounded-2xl border border-[var(--color-border)] object-cover sm:h-56 sm:w-56"
+            onerror="this.style.display='none'"
+          />
+          <noscript>
+            <div class="flex h-48 w-48 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] sm:h-56 sm:w-56">
+              <span class="text-sm text-[var(--color-text-dim)]">Photo</span>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
+            I&rsquo;m Scott Robbins, an AI Engineer and full-stack builder based in
+            the United States. I&rsquo;ve spent the last several years at the
+            intersection of artificial intelligence and software engineering,
+            building systems that are as practical as they are ambitious.
+          </p>
+          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
+            My work spans the full stack — from training and fine-tuning models
+            to deploying production-grade inference pipelines, from crafting
+            elegant frontends to designing robust backend architectures. I
+            believe the best tools are the ones that disappear into the
+            background, letting you focus on what matters.
+          </p>
+          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
+            When I&rsquo;m not building, I&rsquo;m writing about what I&rsquo;ve learned —
+            sharing hard-won lessons about AI, software engineering, and the
+            craft of building things that matter.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="mt-16">
+        <h2 class="font-display text-2xl font-bold text-[var(--color-text)]">
+          Skills &amp; Expertise
+        </h2>
+
+        <div class="mt-8 grid gap-8 sm:grid-cols-2">
+          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
+              AI &amp; ML
+            </h3>
+            <ul class="mt-4 space-y-2" role="list">
+              {["LLM Fine-tuning & RAG", "Prompt Engineering", "vLLM & Inference Serving", "AI Agent Frameworks", "Model Evaluation & Benchmarking"].map((skill) => (
+                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
+              Engineering
+            </h3>
+            <ul class="mt-4 space-y-2" role="list">
+              {["Python / TypeScript / Rust", "React / Astro / Tailwind CSS", "PostgreSQL / Redis / Kafka", "Docker / Kubernetes / Terraform", "CI/CD & Cloud Infrastructure"].map((skill) => (
+                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
+              Tools &amp; Platforms
+            </h3>
+            <ul class="mt-4 space-y-2" role="list">
+              {["GitHub Actions / GitLab CI", "AWS / GCP / Azure", "LangChain / LlamaIndex", "Hugging Face / Weights & Biases", "Obsidian / Notion / Linear"].map((skill) => (
+                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
+            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
+              Practices
+            </h3>
+            <ul class="mt-4 space-y-2" role="list">
+              {["Test-Driven Development", "Agile / Scrum", "Code Review & Mentoring", "Technical Writing", "Open Source Contribution"].map((skill) => (
+                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

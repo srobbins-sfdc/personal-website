@@ -1,0 +1,108 @@
+---
+export interface Props {
+  formName?: string;
+  successMessage?: string;
+}
+
+const { formName = "contact", successMessage = "Thanks for your message! I'll get back to you soon." } = Astro.props;
+---
+
+<form
+  netlify
+  name={formName}
+  method="POST"
+  action="/contact/success"
+  data-netlify="true"
+  class="space-y-5"
+>
+  <!-- Honeypot field: hidden from real users, bots fill it in -->
+  <p class="hidden" aria-hidden="true">
+    <label>
+      Don&rsquo;t fill this out if you&rsquo;re human:
+      <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  <!-- Netlify form name (hidden) -->
+  <input type="hidden" name="form-name" value={formName} />
+
+  <!-- Name -->
+  <div>
+    <label
+      for="contact-name"
+      class="mb-1.5 block text-sm font-medium text-[var(--color-text)]"
+    >
+      Name
+    </label>
+    <input
+      id="contact-name"
+      name="name"
+      type="text"
+      required
+      placeholder="Your name"
+      class="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] transition-colors focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+    />
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label
+      for="contact-email"
+      class="mb-1.5 block text-sm font-medium text-[var(--color-text)]"
+    >
+      Email
+    </label>
+    <input
+      id="contact-email"
+      name="email"
+      type="email"
+      required
+      placeholder="you@example.com"
+      class="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] transition-colors focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+    />
+  </div>
+
+  <!-- Subject -->
+  <div>
+    <label
+      for="contact-subject"
+      class="mb-1.5 block text-sm font-medium text-[var(--color-text)]"
+    >
+      Subject
+    </label>
+    <input
+      id="contact-subject"
+      name="subject"
+      type="text"
+      required
+      placeholder="What's this about?"
+      class="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] transition-colors focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+    />
+  </div>
+
+  <!-- Message -->
+  <div>
+    <label
+      for="contact-message"
+      class="mb-1.5 block text-sm font-medium text-[var(--color-text)]"
+    >
+      Message
+    </label>
+    <textarea
+      id="contact-message"
+      name="message"
+      rows="5"
+      required
+      placeholder="Your message..."
+      class="w-full resize-y rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] transition-colors focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+    ></textarea>
+  </div>
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="w-full rounded-lg bg-[var(--color-accent)] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-[var(--color-surface)]"
+  >
+    Send Message
+  </button>
+</form>

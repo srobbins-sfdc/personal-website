@@ -1,0 +1,36 @@
+---
+import PostLayout from "../../layouts/PostLayout.astro";
+import type { GetStaticPathsResult } from "astro";
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  // In production, this would query the content collection:
+  // const posts = await getCollection('posts');
+  // For now, return hardcoded slugs
+  const slugs = [
+    "building-ai-agents",
+    "why-astro",
+    "scaling-llm-inference",
+    "art-of-prompt-engineering",
+    "containerization-ml",
+    "open-source-lessons",
+  ];
+
+  return slugs.map((slug) => ({
+    params: { slug },
+    props: {
+      title: "Post Title",
+      description: "Post description",
+      date: new Date(),
+      tags: [] as string[],
+      content: "<p>This post is being written. Check back soon!</p>",
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+const { title, description, date, tags, content } = Astro.props;
+---
+
+<PostLayout title={title} description={description} date={date} tags={tags}>
+  <div class="prose" set:html={content} />
+</PostLayout>

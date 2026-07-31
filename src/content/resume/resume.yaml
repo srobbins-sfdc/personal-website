@@ -1,0 +1,72 @@
+experience:
+  - title: "Senior AI Engineer"
+    subtitle: "Nous Research"
+    dateRange: "2024 — Present"
+    description: "Building and maintaining Hermes Agent, an intelligent AI assistant with tool-use, skills, and multi-agent orchestration capabilities."
+    details:
+      - "Architected the agent runtime with support for dynamic tool loading and skill-based workflows"
+      - "Implemented multi-provider LLM routing with fallback and retry logic"
+      - "Designed the skills system for reusable, composable procedural knowledge"
+      - "Built automated evaluation pipelines for measuring agent performance"
+
+  - title: "AI Engineer"
+    subtitle: "Previous Company"
+    dateRange: "2022 — 2024"
+    description: "Led the development of production LLM inference pipelines and AI-powered products."
+    details:
+      - "Deployed and scaled vLLM inference servers serving millions of requests per day"
+      - "Built RAG pipelines using vector databases and embedding models"
+      - "Developed internal tools for prompt engineering and model evaluation"
+      - "Reduced inference latency by 60% through optimized batching and quantization"
+
+  - title: "Software Engineer"
+    subtitle: "Earlier Company"
+    dateRange: "2020 — 2022"
+    description: "Full-stack development with a focus on backend systems and data pipelines."
+    details:
+      - "Designed and implemented microservices architecture on Kubernetes"
+      - "Built real-time data processing pipelines with Kafka and Flink"
+      - "Migrated legacy monolith to modular service-oriented architecture"
+
+skills:
+  - "Python"
+  - "TypeScript"
+  - "Rust"
+  - "React"
+  - "Astro"
+  - "Tailwind CSS"
+  - "PostgreSQL"
+  - "Redis"
+  - "Kafka"
+  - "Docker"
+  - "Kubernetes"
+  - "Terraform"
+  - "AWS"
+  - "GCP"
+  - "GitHub Actions"
+  - "LLM Fine-tuning"
+  - "RAG"
+  - "vLLM"
+  - "LangChain"
+  - "Hugging Face"
+
+certifications:
+  - name: "AWS Solutions Architect — Professional"
+    issuer: "Amazon Web Services"
+    date: "2023"
+
+  - name: "Google Cloud Professional Data Engineer"
+    issuer: "Google Cloud"
+    date: "2022"
+
+  - name: "Kubernetes Administrator (CKA)"
+    issuer: "CNCF"
+    date: "2022"
+
+education:
+  - degree: "B.S. Computer Science"
+    school: "University of Technology"
+    dateRange: "2016 — 2020"
+    details:
+      - "Focus on machine learning and distributed systems"
+      - "Dean's List, Graduated with honors"

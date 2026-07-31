@@ -1,0 +1,44 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import type { GetStaticPathsResult } from "astro";
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  // In production, this would query the content collection:
+  // const projects = await getCollection('projects');
+  const slugs = [
+    "hermes-agent",
+    "personal-website",
+    "llm-eval-suite",
+    "rag-knowledge-base",
+    "ci-cd-toolkit",
+    "iac-templates",
+  ];
+
+  return slugs.map((slug) => ({
+    params: { slug },
+    props: {
+      title: "Project Title",
+      description: "Project description",
+      techStack: [] as string[],
+      liveUrl: undefined as string | undefined,
+      repoUrl: undefined as string | undefined,
+      status: "active" as "active" | "archived" | "wip",
+      content: "<p>This project page is being written. Check back soon!</p>",
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+const { title, description, techStack, liveUrl, repoUrl, status, content } = Astro.props;
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  techStack={techStack}
+  liveUrl={liveUrl}
+  repoUrl={repoUrl}
+  status={status}
+>
+  <div class="prose" set:html={content} />
+</ProjectLayout>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+interface ProjectEntry {
+  title: string;
+  description: string;
+  tags: string[];
+  url: string;
+  status: "active" | "complete" | "archived";
+}
+
+const allProjects: ProjectEntry[] = [
+  {
+    title: "Hermes Agent",
+    description: "An intelligent AI assistant with tool-use, skills, and multi-agent orchestration capabilities. Built with Python and LLM orchestration.",
+    tags: ["AI", "Open Source"],
+    url: "/projects/hermes-agent",
+    status: "active",
+  },
+  {
+    title: "Personal Website",
+    description: "This very site — built with Astro, Tailwind CSS, and dark-mode design. Fully responsive with blog, projects, and resume sections.",
+    tags: ["Web Dev"],
+    url: "/projects/personal-website",
+    status: "active",
+  },
+  {
+    title: "LLM Evaluation Suite",
+    description: "Automated benchmarking and evaluation pipeline for LLM performance across multiple tasks including reasoning, coding, and safety.",
+    tags: ["AI", "Engineering"],
+    url: "/projects/llm-eval-suite",
+    status: "complete",
+  },
+  {
+    title: "RAG Knowledge Base",
+    description: "A retrieval-augmented generation system for querying technical documentation using vector embeddings and LLM reasoning.",
+    tags: ["AI", "Engineering"],
+    url: "/projects/rag-knowledge-base",
+    status: "complete",
+  },
+  {
+    title: "CI/CD Pipeline Toolkit",
+    description: "Reusable GitHub Actions workflows and scripts for automated testing, building, and deploying containerized applications.",
+    tags: ["DevOps", "Open Source"],
+    url: "/projects/ci-cd-toolkit",
+    status: "active",
+  },
+  {
+    title: "Infrastructure as Code Templates",
+    description: "Terraform and Pulumi templates for provisioning cloud infrastructure on AWS and GCP with best practices baked in.",
+    tags: ["DevOps"],
+    url: "/projects/iac-templates",
+    status: "archived",
+  },
+];
+
+const statusColors: Record<string, string> = {
+  active: "bg-[var(--color-success)]/10 text-[var(--color-success)]",
+  complete: "bg-[var(--color-accent)]/10 text-[var(--color-accent)]",
+  archived: "bg-[var(--color-text-dim)]/10 text-[var(--color-text-dim)]",
+};
+---
+
+<BaseLayout title="Projects — Scott Robbins" description="Projects I've built and contributed to.">
+  <section class="section">
+    <div class="mx-auto max-w-5xl">
+      <h1 class="font-display text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl">
+        Projects
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+        Things I&rsquo;ve built, contributed to, and shipped.
+      </p>
+
+      <!-- Tag filter links -->
+      <div class="mt-8 flex flex-wrap gap-2">
+        <a
+          href="/projects"
+          class="rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-medium text-white"
+        >
+          All
+        </a>
+        {["AI", "Engineering", "Web Dev", "DevOps", "Open Source"].map((tag) => (
+          <a
+            href={`/projects/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+            class="rounded-full bg-[var(--color-accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)] hover:text-white"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+
+      <!-- Projects grid -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {allProjects.map((project) => (
+          <article class="card group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-5 transition-all duration-300 hover:border-[var(--color-accent-subtle)] hover:shadow-lg hover:shadow-[var(--color-accent-subtle)]">
+            <div class="mb-3 flex items-center gap-2">
+              <span class={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ${statusColors[project.status]}`}>
+                {project.status}
+              </span>
+            </div>
+            <h3 class="mb-2 font-display text-lg font-semibold leading-snug text-[var(--color-text)]">
+              <a
+                href={project.url}
+                class="after:absolute after:inset-0 transition-colors hover:text-[var(--color-accent)]"
+              >
+                {project.title}
+              </a>
+            </h3>
+            <p class="line-clamp-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {project.description}
+            </p>
+            {project.tags.length > 0 && (
+              <ul class="mt-4 flex flex-wrap gap-2" role="list">
+                {project.tags.map((tag) => (
+                  <li class="inline-block rounded-full bg-[var(--color-accent-subtle)] px-2.5 py-0.5 text-[10px] font-medium text-[var(--color-accent)]">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

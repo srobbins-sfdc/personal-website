@@ -1,0 +1,82 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  date?: Date;
+  tags?: string[];
+  url: string;
+  image?: string;
+}
+
+const { title, description, date, tags, url, image } = Astro.props;
+---
+
+<article
+  class="card group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] transition-all duration-300 hover:border-[var(--color-accent-subtle)] hover:shadow-lg hover:shadow-[var(--color-accent-subtle)]"
+>
+  <!-- Optional cover image -->
+  {
+    image && (
+      <a href={url} tabindex="-1" aria-hidden="true">
+        <img
+          src={image}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="aspect-video w-full object-cover"
+        />
+      </a>
+    )
+  }
+
+  <div class="p-5">
+    <!-- Tags -->
+    {
+      tags && tags.length > 0 && (
+        <ul class="mb-3 flex flex-wrap gap-2" role="list">
+          {tags.map((tag) => (
+            <li>
+              <a
+                href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+                class="inline-block rounded-full bg-[var(--color-accent-subtle)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)] hover:text-white"
+              >
+                {tag}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Date -->
+    {date && (
+      <time
+        datetime={date.toISOString()}
+        class="mb-2 block text-xs text-[var(--color-text-dim)]"
+      >
+        {date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </time>
+    )}
+
+    <!-- Title -->
+    <h3 class="mb-2 font-display text-lg font-semibold leading-snug text-[var(--color-text)]">
+      <a
+        href={url}
+        class="after:absolute after:inset-0 transition-colors hover:text-[var(--color-accent)]"
+      >
+        {title}
+      </a>
+    </h3>
+
+    <!-- Description -->
+    {description && (
+      <p class="line-clamp-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
+        {description}
+      </p>
+    )}
+  </div>
+</article>

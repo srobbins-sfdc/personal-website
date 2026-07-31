@@ -1,0 +1,66 @@
+---
+export interface Props {
+  src: string;
+  title?: string;
+}
+
+const { src, title = "Embedded video" } = Astro.props;
+
+// Extract YouTube or Vimeo embed URL
+function getEmbedUrl(url: string): string | null {
+  try {
+    const u = new URL(url);
+
+    // YouTube
+    if (u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be")) {
+      const videoId =
+        u.searchParams.get("v") ||
+        u.pathname.split("/").pop()?.split("?")[0] ||
+        "";
+      if (videoId) {
+        return `https://www.youtube-nocookie.com/embed/${videoId}`;
+      }
+    }
+
+    // Vimeo
+    if (u.hostname.includes("vimeo.com")) {
+      const vimeoId = u.pathname.split("/").pop()?.split("?")[0] || "";
+      if (vimeoId) {
+        return `https://player.vimeo.com/video/${vimeoId}`;
+      }
+    }
+
+    // If it's already an embed URL, return as-is
+    if (url.includes("/embed/")) return url;
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const embedUrl = getEmbedUrl(src);
+---
+
+{
+  embedUrl ? (
+    <div
+      class="relative aspect-video w-full overflow-hidden rounded-xl"
+    >
+      <iframe
+        src={embedUrl}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        class="absolute inset-0 h-full w-full"
+      ></iframe>
+    </div>
+  ) : (
+    <p
+      class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-4 text-sm text-[var(--color-error)]"
+    >
+      Invalid video URL. Please provide a YouTube or Vimeo link.
+    </p>
+  )
+}

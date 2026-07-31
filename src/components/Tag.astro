@@ -1,0 +1,30 @@
+---
+export interface Props {
+  tag: string;
+  count?: number;
+  size?: "sm" | "md" | "lg";
+}
+
+const { tag, count, size = "sm" } = Astro.props;
+
+const sizeClasses: Record<string, string> = {
+  sm: "px-2.5 py-0.5 text-xs",
+  md: "px-3 py-1 text-sm",
+  lg: "px-4 py-1.5 text-base",
+};
+---
+
+<a
+  href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`}
+  class={`inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200 ${sizeClasses[size]} bg-[var(--color-accent-subtle)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white`}
+>
+  <span>{tag}</span>
+  {count !== undefined && (
+    <span
+      class="inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[var(--color-accent)]/20 px-1 text-[0.625rem] leading-none text-[var(--color-accent)] group-hover:bg-white/20 group-hover:text-white"
+      aria-label={`${count} posts`}
+    >
+      {count}
+    </span>
+  )}
+</a>

@@ -1,0 +1,88 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  dateRange?: string;
+  items?: Array<{
+    title: string;
+    subtitle?: string;
+    dateRange?: string;
+    description?: string;
+    details?: string[];
+  }>;
+}
+
+const { title, subtitle, dateRange, items } = Astro.props;
+---
+
+<section class="space-y-4">
+  <!-- Section header -->
+  <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+    <h2
+      class="font-display text-2xl font-bold text-[var(--color-text)]"
+    >
+      {title}
+    </h2>
+    {dateRange && (
+      <span class="text-sm text-[var(--color-text-dim)]">
+        {dateRange}
+      </span>
+    )}
+  </div>
+
+  {subtitle && (
+    <p class="text-sm text-[var(--color-text-muted)]">
+      {subtitle}
+    </p>
+  )}
+
+  <!-- Items list -->
+  {items && items.length > 0 && (
+    <div class="space-y-6">
+      {items.map((item) => (
+        <div class="border-l-2 border-[var(--color-accent-subtle)] pl-4 transition-colors hover:border-[var(--color-accent)]">
+          <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <h3
+              class="font-display text-lg font-semibold text-[var(--color-text)]"
+            >
+              {item.title}
+            </h3>
+            {item.dateRange && (
+              <span class="text-xs text-[var(--color-text-dim)]">
+                {item.dateRange}
+              </span>
+            )}
+          </div>
+
+          {item.subtitle && (
+            <p class="mt-0.5 text-sm font-medium text-[var(--color-accent)]">
+              {item.subtitle}
+            </p>
+          )}
+
+          {item.description && (
+            <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {item.description}
+            </p>
+          )}
+
+          {item.details && item.details.length > 0 && (
+            <ul class="mt-2 space-y-1" role="list">
+              {item.details.map((detail) => (
+                <li
+                  class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]"
+                >
+                  <span
+                    class="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]"
+                    aria-hidden="true"
+                  ></span>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</section>

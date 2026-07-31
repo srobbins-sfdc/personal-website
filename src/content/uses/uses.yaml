@@ -1,0 +1,61 @@
+categories:
+  - name: "Hardware"
+    items:
+      - name: "MacBook Pro M3 Max"
+        description: "64 GB RAM, 1 TB SSD — my daily driver for development and AI workloads."
+      - name: 'LG 27" 4K Monitor'
+        description: "Primary external display, USB-C connected for clean desk setup."
+      - name: "Keychron Q1 Pro"
+        description: "Mechanical keyboard with Gateron Brown switches, QMK/VIA programmable."
+      - name: "Logitech MX Master 3S"
+        description: "Ergonomic mouse with customizable buttons and silent clicks."
+      - name: "AirPods Pro 2"
+        description: "Noise cancellation for deep focus sessions and calls."
+
+  - name: "Development"
+    items:
+      - name: "VS Code"
+        description: "Primary editor with Vim keybindings, GitHub Copilot, and custom snippets."
+      - name: "Neovim"
+        description: "Quick edits and terminal-based development when I need to stay in the shell."
+      - name: "Warp"
+        description: "Modern terminal with AI-powered command suggestions and GPU acceleration."
+      - name: "iTerm2"
+        description: "Fallback terminal with tmux integration for remote sessions."
+      - name: "GitHub CLI"
+        description: "Everything from the command line — PRs, issues, actions, and code review."
+
+  - name: "AI & ML Tools"
+    items:
+      - name: "Hermes Agent"
+        description: "My own AI assistant framework — dogfooding what I build."
+      - name: "Claude Code"
+        description: "AI-powered terminal agent for complex coding tasks and refactoring."
+      - name: "vLLM"
+        description: "High-throughput LLM inference server for local and cloud model serving."
+      - name: "Hugging Face"
+        description: "Model hub, datasets, and Spaces for experimentation and sharing."
+      - name: "Weights & Biases"
+        description: "Experiment tracking, model registry, and dataset versioning."
+
+  - name: "Productivity"
+    items:
+      - name: "Obsidian"
+        description: "Knowledge management with backlinks, graph view, and community plugins."
+      - name: "Linear"
+        description: "Issue tracking and project management — fast, keyboard-first, and delightful."
+      - name: "Notion"
+        description: "Team wikis, meeting notes, and collaborative documentation."
+      - name: "Arc Browser"
+        description: "Chromium-based browser with vertical tabs, profiles, and spaces."
+      - name: "Raycast"
+        description: "macOS launcher and productivity tool — extensions, clipboard, and window management."
+
+  - name: "Audio & Media"
+    items:
+      - name: "Spotify"
+        description: "Lo-fi beats, ambient soundscapes, and focus playlists for coding sessions."
+      - name: "OBS Studio"
+        description: "Screen recording and streaming for demos and tutorials."
+      - name: "Pocket Casts"
+        description: "Podcast player for tech, AI, and software engineering shows."

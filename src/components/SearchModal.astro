@@ -1,0 +1,124 @@
+---
+---
+
+<div
+  id="search-modal"
+  class="fixed inset-0 z-[100] hidden items-start justify-center pt-[15vh]"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search"
+>
+  <!-- Backdrop overlay -->
+  <div
+    id="search-backdrop"
+    class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+  ></div>
+
+  <!-- Modal panel -->
+  <div
+    class="glass relative z-10 w-full max-w-lg rounded-xl p-4 shadow-2xl"
+  >
+    <!-- Close button -->
+    <button
+      id="search-close"
+      class="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-md text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)]"
+      aria-label="Close search"
+      type="button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+
+    <!-- Pagefind search UI mounts here -->
+    <div id="search"></div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("search-modal");
+  const backdrop = document.getElementById("search-backdrop");
+  const closeBtn = document.getElementById("search-close");
+  const searchToggle = document.getElementById("search-toggle");
+  const searchContainer = document.getElementById("search");
+
+  let pagefindInitialized = false;
+
+  async function openSearch() {
+    if (!modal) return;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden";
+
+    if (!pagefindInitialized && searchContainer) {
+      try {
+        // Dynamically import Pagefind UI
+        const { PagefindUI } = await import(
+          /* @vite-ignore */ "/pagefind/pagefind-ui.js"
+        );
+        new PagefindUI({
+          element: searchContainer,
+          showSubResults: true,
+          showImages: false,
+          resetStyles: false,
+          autofocus: true,
+        });
+        pagefindInitialized = true;
+      } catch (e) {
+        console.warn("Pagefind not available yet. Run `npx pagefind` after build.", e);
+      }
+    }
+
+    // Focus the input after a short delay
+    setTimeout(() => {
+      const input = searchContainer?.querySelector("input");
+      input?.focus();
+    }, 100);
+  }
+
+  function closeSearch() {
+    if (!modal) return;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  // Open on search toggle click
+  searchToggle?.addEventListener("click", openSearch);
+
+  // Close on backdrop click
+  backdrop?.addEventListener("click", closeSearch);
+
+  // Close on X button
+  closeBtn?.addEventListener("click", closeSearch);
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+      closeSearch();
+    }
+  });
+
+  // Keyboard shortcut: Ctrl+K / Cmd+K
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      if (modal?.classList.contains("hidden")) {
+        openSearch();
+      } else {
+        closeSearch();
+      }
+    }
+  });
+</script>

@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+
+const resumeData = {
+  experience: [
+    {
+      title: "Senior AI Engineer",
+      subtitle: "Nous Research",
+      dateRange: "2024 — Present",
+      description: "Building and maintaining Hermes Agent, an intelligent AI assistant with tool-use, skills, and multi-agent orchestration capabilities.",
+      details: [
+        "Architected the agent runtime with support for dynamic tool loading and skill-based workflows",
+        "Implemented multi-provider LLM routing with fallback and retry logic",
+        "Designed the skills system for reusable, composable procedural knowledge",
+        "Built automated evaluation pipelines for measuring agent performance",
+      ],
+    },
+    {
+      title: "AI Engineer",
+      subtitle: "Previous Company",
+      dateRange: "2022 — 2024",
+      description: "Led the development of production LLM inference pipelines and AI-powered products.",
+      details: [
+        "Deployed and scaled vLLM inference servers serving millions of requests per day",
+        "Built RAG pipelines using vector databases and embedding models",
+        "Developed internal tools for prompt engineering and model evaluation",
+        "Reduced inference latency by 60% through optimized batching and quantization",
+      ],
+    },
+    {
+      title: "Software Engineer",
+      subtitle: "Earlier Company",
+      dateRange: "2020 — 2022",
+      description: "Full-stack development with a focus on backend systems and data pipelines.",
+      details: [
+        "Designed and implemented microservices architecture on Kubernetes",
+        "Built real-time data processing pipelines with Kafka and Flink",
+        "Migrated legacy monolith to modular service-oriented architecture",
+      ],
+    },
+  ],
+  skills: [
+    "Python",
+    "TypeScript",
+    "Rust",
+    "React",
+    "Astro",
+    "Tailwind CSS",
+    "PostgreSQL",
+    "Redis",
+    "Kafka",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "AWS",
+    "GCP",
+    "GitHub Actions",
+    "LLM Fine-tuning",
+    "RAG",
+    "vLLM",
+    "LangChain",
+    "Hugging Face",
+  ],
+  certifications: [
+    { name: "AWS Solutions Architect — Professional", issuer: "Amazon Web Services", date: "2023" },
+    { name: "Google Cloud Professional Data Engineer", issuer: "Google Cloud", date: "2022" },
+    { name: "Kubernetes Administrator (CKA)", issuer: "CNCF", date: "2022" },
+  ],
+  education: [
+    {
+      degree: "B.S. Computer Science",
+      school: "University of Technology",
+      dateRange: "2016 — 2020",
+      details: [
+        "Focus on machine learning and distributed systems",
+        "Dean's List, Graduated with honors",
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout title="Resume — Scott Robbins" description="Professional experience, skills, and education of Scott Robbins.">
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <!-- Header -->
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+            Resume
+          </h1>
+          <p class="mt-2 text-[var(--color-text-muted)]">
+            Scott Robbins — AI Engineer &amp; Builder
+          </p>
+        </div>
+
+        <!-- Download PDF button -->
+        <a
+          href="/resume.pdf"
+          download
+          class="inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          Download PDF
+        </a>
+      </div>
+
+      <div class="mt-12 space-y-12">
+        <!-- Experience -->
+        <ResumeSection title="Experience" items={resumeData.experience} />
+
+        <!-- Skills -->
+        <section class="space-y-4">
+          <h2 class="font-display text-2xl font-bold text-[var(--color-text)]">
+            Skills
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {resumeData.skills.map((skill) => (
+              <span class="rounded-md bg-[var(--color-surface-alt)] px-3 py-1.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)]">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="space-y-4">
+          <h2 class="font-display text-2xl font-bold text-[var(--color-text)]">
+            Certifications
+          </h2>
+          <div class="space-y-4">
+            {resumeData.certifications.map((cert) => (
+              <div class="border-l-2 border-[var(--color-accent-subtle)] pl-4 transition-colors hover:border-[var(--color-accent)]">
+                <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
+                  {cert.name}
+                </h3>
+                <p class="mt-0.5 text-sm font-medium text-[var(--color-accent)]">
+                  {cert.issuer}
+                </p>
+                {cert.date && (
+                  <p class="mt-1 text-xs text-[var(--color-text-dim)]">
+                    {cert.date}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Education -->
+        <ResumeSection title="Education" items={resumeData.education} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

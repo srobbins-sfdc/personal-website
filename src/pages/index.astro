@@ -1,17 +1,196 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
 
+const featuredPosts = [
+  {
+    title: "Building AI Agents That Actually Work",
+    description: "Lessons learned from building production-grade AI agents — from prompt engineering to tool calling and observability.",
+    date: new Date("2026-06-15"),
+    tags: ["AI", "Engineering"],
+    url: "/posts/building-ai-agents",
+    image: "",
+  },
+  {
+    title: "Why I Switched to Astro for My Personal Site",
+    description: "A deep dive into why Astro won out over Next.js, Hugo, and plain HTML for this very website.",
+    date: new Date("2026-05-20"),
+    tags: ["Web Dev"],
+    url: "/posts/why-astro",
+    image: "",
+  },
+  {
+    title: "Scaling LLM Inference with vLLM",
+    description: "A practical guide to deploying and scaling large language models in production using vLLM.",
+    date: new Date("2026-04-10"),
+    tags: ["AI", "DevOps"],
+    url: "/posts/scaling-llm-inference",
+    image: "",
+  },
+];
+
+const featuredProjects = [
+  {
+    title: "Hermes Agent",
+    description: "An intelligent AI assistant with tool-use, skills, and multi-agent orchestration capabilities.",
+    tags: ["AI", "Open Source"],
+    url: "/projects/hermes-agent",
+    status: "active",
+  },
+  {
+    title: "Personal Website",
+    description: "This very site — built with Astro, Tailwind CSS, and dark-mode design.",
+    tags: ["Web Dev"],
+    url: "/projects/personal-website",
+    status: "active",
+  },
+  {
+    title: "LLM Evaluation Suite",
+    description: "Automated benchmarking and evaluation pipeline for LLM performance across multiple tasks.",
+    tags: ["AI", "Engineering"],
+    url: "/projects/llm-eval-suite",
+    status: "complete",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Scott Robbins — AI Engineer & Builder">
+  <!-- Hero Section -->
+  <section class="section flex min-h-[70vh] flex-col justify-center">
+    <div class="max-w-3xl">
+      <p class="mb-4 text-sm font-medium uppercase tracking-widest text-[var(--color-accent)]">
+        Hi, I&rsquo;m
+      </p>
+      <h1 class="font-display text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl lg:text-6xl">
+        Scott Robbins
+      </h1>
+      <p class="mt-4 text-xl text-[var(--color-text-muted)] sm:text-2xl">
+        AI Engineer &amp; Builder
+      </p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-muted)]">
+        I build intelligent systems, write about AI and software engineering, and
+        create tools that help developers ship better software faster.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          View My Work
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] px-6 py-3 text-sm font-semibold text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+        >
+          Get in Touch
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Posts -->
+  <section class="section">
+    <div class="mb-10 flex items-center justify-between">
+      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
+        Latest Posts
+      </h2>
+      <a
+        href="/posts"
+        class="text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
+      >
+        View all &rarr;
+      </a>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featuredPosts.map((post) => (
+        <PostCard
+          title={post.title}
+          description={post.description}
+          date={post.date}
+          tags={post.tags}
+          url={post.url}
+          image={post.image || undefined}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="section">
+    <div class="mb-10 flex items-center justify-between">
+      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
+        Featured Projects
+      </h2>
+      <a
+        href="/projects"
+        class="text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
+      >
+        View all &rarr;
+      </a>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featuredProjects.map((project) => (
+        <article class="card group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-5 transition-all duration-300 hover:border-[var(--color-accent-subtle)] hover:shadow-lg hover:shadow-[var(--color-accent-subtle)]">
+          <div class="mb-3 flex items-center gap-2">
+            <span
+              class={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
+                project.status === "active"
+                  ? "bg-[var(--color-success)]/10 text-[var(--color-success)]"
+                  : "bg-[var(--color-text-dim)]/10 text-[var(--color-text-dim)]"
+              }`}
+            >
+              {project.status}
+            </span>
+          </div>
+          <h3 class="mb-2 font-display text-lg font-semibold leading-snug text-[var(--color-text)]">
+            <a href={project.url} class="after:absolute after:inset-0 transition-colors hover:text-[var(--color-accent)]">
+              {project.title}
+            </a>
+          </h3>
+          <p class="line-clamp-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
+            {project.description}
+          </p>
+          {project.tags.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-2" role="list">
+              {project.tags.map((tag) => (
+                <li class="inline-block rounded-full bg-[var(--color-accent-subtle)] px-2.5 py-0.5 text-[10px] font-medium text-[var(--color-accent)]">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-10 text-center sm:p-16">
+      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
+        Let&rsquo;s Build Something Together
+      </h2>
+      <p class="mx-auto mt-4 max-w-lg text-[var(--color-text-muted)]">
+        I&rsquo;m always open to interesting conversations, collaborations, and
+        new opportunities. Drop me a line!
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+      >
+        Contact Me
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
