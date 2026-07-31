@@ -3,115 +3,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About — Scott Robbins" description="Learn more about Scott Robbins, his background, skills, and what drives him.">
-  <section class="section">
-    <div class="mx-auto max-w-3xl">
-      <h1 class="font-display text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl">
-        About Me
-      </h1>
-
-      <!-- Intro -->
-      <div class="mt-10 flex flex-col gap-10 sm:flex-row sm:items-start">
-        <!-- Headshot placeholder -->
-        <div class="shrink-0">
-          <img
-            src="/images/placeholder-headshot.svg"
-            alt="Scott Robbins"
-            width="200"
-            height="200"
-            class="h-48 w-48 rounded-2xl border border-[var(--color-border)] object-cover sm:h-56 sm:w-56"
-            onerror="this.style.display='none'"
-          />
-          <noscript>
-            <div class="flex h-48 w-48 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] sm:h-56 sm:w-56">
-              <span class="text-sm text-[var(--color-text-dim)]">Photo</span>
-            </div>
-          </noscript>
-        </div>
-
-        <div class="space-y-4">
-          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
-            I&rsquo;m Scott Robbins, an AI Engineer and full-stack builder based in
-            the United States. I&rsquo;ve spent the last several years at the
-            intersection of artificial intelligence and software engineering,
-            building systems that are as practical as they are ambitious.
-          </p>
-          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
-            My work spans the full stack — from training and fine-tuning models
-            to deploying production-grade inference pipelines, from crafting
-            elegant frontends to designing robust backend architectures. I
-            believe the best tools are the ones that disappear into the
-            background, letting you focus on what matters.
-          </p>
-          <p class="text-lg leading-relaxed text-[var(--color-text-muted)]">
-            When I&rsquo;m not building, I&rsquo;m writing about what I&rsquo;ve learned —
-            sharing hard-won lessons about AI, software engineering, and the
-            craft of building things that matter.
-          </p>
+  <section class="section section-muted">
+    <div class="vx-container">
+      <div style="display:flex; flex-direction:column; gap: 40px; align-items:flex-start;">
+        <!-- Headshot + intro -->
+        <div style="display:flex; flex-direction:column; gap: 32px; align-items:flex-start;" class="about-intro">
+          <div>
+            <img
+              src="/images/placeholder-headshot.svg"
+              alt="Scott Robbins"
+              width="200"
+              height="200"
+              style="border-radius: var(--vx-radius-md); border: 1px solid var(--vx-border); object-fit: cover; width: 200px; height: 200px;"
+            />
+          </div>
+          <div style="flex:1;">
+            <span class="eyebrow" style="margin-bottom: 20px; display:inline-flex;">
+              About Me
+            </span>
+            <h1 class="hero-title" style="font-size: clamp(36px, 4vw, 54px); margin: 20px 0 24px;">
+              Scott <span class="accent">Robbins</span>
+            </h1>
+            <p class="hero-copy" style="max-width: 600px;">
+              Principal Data &amp; AI Architect at Salesforce, Global D360 team. 15+ Salesforce
+              certifications, AWS and Google Cloud credentials. Deep vertical expertise in
+              manufacturing, automotive, and energy.
+            </p>
+            <p class="hero-copy" style="max-width: 600px; font-size: 16px;">
+              Based in Michigan. When I&rsquo;m not architecting Data Cloud and Agentforce solutions,
+              I&rsquo;m writing about AI, tinkering with watches and EDC gear, skiing cross-country,
+              and working on my home gym and DIY electrical projects.
+            </p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Skills -->
-      <div class="mt-16">
-        <h2 class="font-display text-2xl font-bold text-[var(--color-text)]">
-          Skills &amp; Expertise
-        </h2>
+  <!-- Skills -->
+  <section class="section">
+    <div class="vx-container">
+      <div class="section-heading" style="text-align:left; margin-bottom: 50px;">
+        <h2 class="section-title">Skills &amp; Expertise</h2>
+      </div>
 
-        <div class="mt-8 grid gap-8 sm:grid-cols-2">
-          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
-            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
-              AI &amp; ML
-            </h3>
-            <ul class="mt-4 space-y-2" role="list">
-              {["LLM Fine-tuning & RAG", "Prompt Engineering", "vLLM & Inference Serving", "AI Agent Frameworks", "Model Evaluation & Benchmarking"].map((skill) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
           </div>
+          <h3>Data Cloud &amp; Agentforce</h3>
+          <p>Salesforce Data Cloud, Agentforce, Einstein AI, and the broader Data &amp; AI go-to-market motion.</p>
+        </div>
 
-          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
-            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
-              Engineering
-            </h3>
-            <ul class="mt-4 space-y-2" role="list">
-              {["Python / TypeScript / Rust", "React / Astro / Tailwind CSS", "PostgreSQL / Redis / Kafka", "Docker / Kubernetes / Terraform", "CI/CD & Cloud Infrastructure"].map((skill) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
           </div>
+          <h3>Cloud Architecture</h3>
+          <p>AWS and GCP infrastructure, serverless patterns, IAM, Pub/Sub, and multi-cloud deployment strategies.</p>
+        </div>
 
-          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
-            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
-              Tools &amp; Platforms
-            </h3>
-            <ul class="mt-4 space-y-2" role="list">
-              {["GitHub Actions / GitLab CI", "AWS / GCP / Azure", "LangChain / LlamaIndex", "Hugging Face / Weights & Biases", "Obsidian / Notion / Linear"].map((skill) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/>
+            </svg>
           </div>
+          <h3>Vertical Expertise</h3>
+          <p>Manufacturing, automotive, and energy — domain-specific solutions and industry cloud patterns.</p>
+        </div>
 
-          <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-6">
-            <h3 class="font-display text-lg font-semibold text-[var(--color-text)]">
-              Practices
-            </h3>
-            <ul class="mt-4 space-y-2" role="list">
-              {["Test-Driven Development", "Agile / Scrum", "Code Review & Mentoring", "Technical Writing", "Open Source Contribution"].map((skill) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 11H1l8-8 8 8h-8v8a4 4 0 004 4h8"/>
+            </svg>
           </div>
+          <h3>AI &amp; Automation</h3>
+          <p>Agent orchestration, RAG pipelines, model evaluation, and production-grade AI system design.</p>
         </div>
       </div>
     </div>

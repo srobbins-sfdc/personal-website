@@ -1,39 +1,29 @@
 @import "tailwindcss";
+@import "./velixo-inspired.css";
 
-/* ─── Velixo-inspired Light Theme (default) ─── */
+/* ─── Map existing --color-* vars to Velixo palette ─── */
 @theme {
-  /* Core palette — LIGHT is default */
-  --color-surface: #fafafa;
-  --color-surface-alt: #f0f0f2;
-  --color-surface-elevated: #ffffff;
-  --color-border: #e0e0e6;
+  --color-surface: var(--vx-bg);
+  --color-surface-alt: var(--vx-section);
+  --color-surface-elevated: var(--vx-surface);
+  --color-border: var(--vx-border);
   --color-border-light: #d0d0d8;
 
-  --color-text: #1a1a22;
-  --color-text-muted: #6b6b78;
-  --color-text-dim: #9898a3;
+  --color-text: var(--vx-navy);
+  --color-text-muted: var(--vx-text);
+  --color-text-dim: var(--vx-muted);
 
-  --color-accent: #6c63ff;
-  --color-accent-hover: #5b52e8;
-  --color-accent-subtle: rgba(108, 99, 255, 0.10);
+  --color-accent: var(--vx-blue);
+  --color-accent-hover: var(--vx-blue-dark);
+  --color-accent-subtle: var(--vx-pill);
 
   --color-success: #059669;
   --color-warning: #d97706;
   --color-error: #dc2626;
 
-  /* Dark mode overrides (applied via .dark class on :root) */
-  --color-surface-dark: #0f0f11;
-  --color-surface-alt-dark: #1a1a1e;
-  --color-surface-elevated-dark: #23232a;
-  --color-border-dark: #2a2a33;
-  --color-border-light-dark: #3a3a45;
-  --color-text-dark: #e8e8ed;
-  --color-text-muted-dark: #9898a3;
-  --color-text-dim-dark: #6b6b78;
-
   /* Typography */
   --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
   /* Spacing */
@@ -47,23 +37,21 @@
 
 /* ─── Dark mode overrides ─── */
 :root.dark {
-  --color-surface: #0f0f11;
-  --color-surface-alt: #1a1a1e;
-  --color-surface-elevated: #23232a;
-  --color-border: #2a2a33;
-  --color-border-light: #3a3a45;
-
-  --color-text: #e8e8ed;
-  --color-text-muted: #9898a3;
-  --color-text-dim: #6b6b78;
-
-  --color-accent: #6c63ff;
-  --color-accent-hover: #7b73ff;
-  --color-accent-subtle: rgba(108, 99, 255, 0.12);
-
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
-  --color-error: #f87171;
+  --vx-bg: #0f0f11;
+  --vx-surface: #1a1a1e;
+  --vx-section: #16161a;
+  --vx-hero-top: #14141a;
+  --vx-hero-bottom: #1a1a22;
+  --vx-navy: #e8e8ed;
+  --vx-text: #9898a3;
+  --vx-muted: #6b6b78;
+  --vx-border: #2a2a33;
+  --vx-blue: #6c63ff;
+  --vx-blue-dark: #7b73ff;
+  --vx-indigo: #6266f3;
+  --vx-pill: rgba(108, 99, 255, 0.12);
+  --vx-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+  --vx-shadow-strong: 0 14px 28px rgba(108, 99, 255, 0.24);
 }
 
 @keyframes fade-in {
@@ -83,17 +71,17 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-surface);
-  color: var(--color-text);
-  line-height: 1.7;
+  background-color: var(--vx-bg);
+  color: var(--vx-text);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Selection */
 ::selection {
-  background-color: var(--color-accent-subtle);
-  color: var(--color-accent);
+  background-color: var(--vx-pill);
+  color: var(--vx-blue);
 }
 
 /* Prose styles for MDX content */
@@ -107,7 +95,7 @@ body {
   font-size: 1.75rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  color: var(--color-text);
+  color: var(--vx-navy);
 }
 
 .prose h3 {
@@ -115,35 +103,36 @@ body {
   font-size: 1.35rem;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
+  color: var(--vx-navy);
 }
 
 .prose p {
   margin-bottom: 1.25rem;
-  color: var(--color-text-muted);
+  color: var(--vx-text);
 }
 
 .prose a {
-  color: var(--color-accent);
+  color: var(--vx-blue);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
 }
 
 .prose a:hover {
-  border-bottom-color: var(--color-accent);
+  border-bottom-color: var(--vx-blue);
 }
 
 .prose code {
   font-family: var(--font-mono);
   font-size: 0.875em;
-  background: var(--color-surface-alt);
+  background: var(--vx-section);
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: var(--color-surface-elevated) !important;
-  border: 1px solid var(--color-border);
+  background: var(--vx-surface) !important;
+  border: 1px solid var(--vx-border);
   border-radius: 8px;
   padding: 1.25rem;
   overflow-x: auto;
@@ -155,16 +144,16 @@ body {
 }
 
 .prose blockquote {
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid var(--vx-blue);
   padding-left: 1.25rem;
-  color: var(--color-text-muted);
+  color: var(--vx-text);
   font-style: italic;
 }
 
 .prose ul, .prose ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
-  color: var(--color-text-muted);
+  color: var(--vx-text);
 }
 
 .prose li {
@@ -177,33 +166,21 @@ body {
 }
 
 /* Smooth transitions for dark/light mode */
-body, .prose *, .nav-link, .card {
+body, .prose *, .nav-link, .card, .demo-card, .feature-card {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Utility classes */
+/* Glass effect overrides for header */
 .glass {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--vx-border);
 }
 
 :root.dark .glass {
   background: rgba(26, 26, 30, 0.7);
-  border-bottom-color: var(--color-border);
-}
-
-.section {
-  padding-top: var(--spacing-section);
-  padding-bottom: var(--spacing-section);
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding-top: var(--spacing-section-sm);
-    padding-bottom: var(--spacing-section-sm);
-  }
+  border-bottom-color: var(--vx-border);
 }
 
 /* Scrollbar styling */
@@ -211,20 +188,20 @@ body, .prose *, .nav-link, .card {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: var(--vx-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--vx-border);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-light);
+  background: var(--vx-muted);
 }
 
 /* Pagefind overrides */
 :root {
-  --pagefind-ui-primary: var(--color-accent);
-  --pagefind-ui-text: var(--color-text);
-  --pagefind-ui-background: var(--color-surface-elevated);
-  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-primary: var(--vx-blue);
+  --pagefind-ui-text: var(--vx-navy);
+  --pagefind-ui-background: var(--vx-surface);
+  --pagefind-ui-border: var(--vx-border);
 }

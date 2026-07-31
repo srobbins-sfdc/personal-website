@@ -39,7 +39,7 @@ const featuredProjects = [
   },
   {
     title: "Personal Website",
-    description: "This very site — built with Astro, Tailwind CSS, and dark-mode design.",
+    description: "This very site — built with Astro, Tailwind CSS, and Velixo-inspired design.",
     tags: ["Web Dev"],
     url: "/projects/personal-website",
     status: "active",
@@ -55,142 +55,173 @@ const featuredProjects = [
 ---
 
 <BaseLayout title="Scott Robbins — AI Engineer & Builder">
-  <!-- Hero Section -->
-  <section class="section flex min-h-[70vh] flex-col justify-center">
-    <div class="max-w-3xl">
-      <p class="mb-4 text-sm font-medium uppercase tracking-widest text-[var(--color-accent)]">
-        Hi, I&rsquo;m
-      </p>
-      <h1 class="font-display text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl lg:text-6xl">
-        Scott Robbins
-      </h1>
-      <p class="mt-4 text-xl text-[var(--color-text-muted)] sm:text-2xl">
-        AI Engineer &amp; Builder
-      </p>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-muted)]">
-        I build intelligent systems, write about AI and software engineering, and
-        create tools that help developers ship better software faster.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-        >
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          View My Work
-        </a>
-        <a
-          href="/contact"
-          class="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] px-6 py-3 text-sm font-semibold text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-        >
-          Get in Touch
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
-        </a>
+  <!-- Hero Section (Velixo style) -->
+  <section class="hero-shell">
+    <div class="vx-container">
+      <!-- Header area within hero -->
+      <div class="hero">
+        <div>
+          <span class="eyebrow">
+            <svg class="eyebrow-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z" transform="scale(0.875)" />
+            </svg>
+            Premium Personal Portfolio
+          </span>
+
+          <h1 class="hero-title">
+            Scott <span class="accent">Robbins</span>
+          </h1>
+
+          <p class="hero-copy">
+            Principal Data &amp; AI Architect at Salesforce. I build intelligent systems,
+            write about AI and software engineering, and create tools that help developers
+            ship better software faster.
+          </p>
+
+          <div class="button-row">
+            <a href="/projects" class="btn btn-primary">
+              Explore My Work
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/contact" class="btn btn-secondary">
+              Get in Touch
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span>
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14.5A6.5 6.5 0 118 1.5a6.5 6.5 0 010 13zm-.5-11v5l3.5 2 .8-1.3-2.8-1.7V3.5z"/>
+              </svg>
+              Fast Performance
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M3 1h10v2H3V1zm0 4h10v2H3V5zm0 4h10v2H3V9zm0 4h10v2H3v-2z"/>
+              </svg>
+              Clean Architecture
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M11 2h2v2h-2V2zm0 4h2v8h-2V6zM4 2h5v2H4V2zm0 4h5v2H4V6zm0 4h5v2H4v-2zm0 4h5v2H4v-2z"/>
+              </svg>
+              Well Documented
+            </span>
+          </div>
+        </div>
+
+        <!-- Preview frame -->
+        <div class="preview-frame">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div style="grid-column: span 2; padding: 20px; border-radius: 14px; background: var(--vx-section); border: 1px solid var(--vx-border);">
+              <p style="margin:0 0 6px; font-size:11px; font-weight:900; letter-spacing:0.06em; text-transform:uppercase; color: var(--vx-blue);">Engineering</p>
+              <p style="margin:0; font-size:16px; font-weight:800; color: var(--vx-navy); line-height:1.25;">The Future of Data &amp; AI</p>
+            </div>
+            <div style="padding: 16px; border-radius: 14px; background: var(--vx-surface); border: 1px solid var(--vx-border);">
+              <p style="margin:0 0 4px; font-size:10px; font-weight:900; text-transform:uppercase; color: var(--vx-muted);">Experience</p>
+              <p style="margin:0; font-size:13px; font-weight:700; color: var(--vx-navy);">15+ Years</p>
+            </div>
+            <div style="padding: 16px; border-radius: 14px; background: var(--vx-surface); border: 1px solid var(--vx-border);">
+              <p style="margin:0 0 4px; font-size:10px; font-weight:900; text-transform:uppercase; color: var(--vx-muted);">Certifications</p>
+              <p style="margin:0; font-size:13px; font-weight:700; color: var(--vx-navy);">15+ SF + Cloud</p>
+            </div>
+            <div style="grid-column: span 2; display:flex; align-items:center; gap: 12px; padding: 16px; border-radius: 14px; background: linear-gradient(135deg, var(--vx-blue), var(--vx-indigo)); color: white;">
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px;">SR</div>
+              <div>
+                <p style="margin:0; font-size:13px; font-weight:800;">Scott Robbins</p>
+                <p style="margin:0; font-size:11px; opacity:0.82;">Data &amp; AI Architect</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Posts -->
-  <section class="section">
-    <div class="mb-10 flex items-center justify-between">
-      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
-        Latest Posts
-      </h2>
-      <a
-        href="/posts"
-        class="text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
-      >
-        View all &rarr;
-      </a>
-    </div>
+  <!-- Latest Posts (Velixo section style) -->
+  <section class="section section-muted">
+    <div class="vx-container">
+      <div class="section-heading" style="text-align:left; margin-bottom: 50px;">
+        <h2 class="section-title">Latest Posts</h2>
+        <p class="section-subtitle">Thoughts on AI, software engineering, and the craft of building.</p>
+      </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {featuredPosts.map((post) => (
-        <PostCard
-          title={post.title}
-          description={post.description}
-          date={post.date}
-          tags={post.tags}
-          url={post.url}
-          image={post.image || undefined}
-        />
-      ))}
+      <div class="demo-grid">
+        {featuredPosts.map((post) => (
+          <a href={post.url} class="demo-card" style="text-decoration:none;">
+            <div class="demo-card-media" style="display:flex; align-items:center; justify-content:center;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--vx-blue)" stroke-width="1" opacity="0.4" aria-hidden="true">
+                <path d="M4 4h16v16H4z" rx="2"/><path d="M4 8h16M8 4v16"/>
+              </svg>
+            </div>
+            <div class="demo-card-body">
+              <span class="tag">{post.tags[0]}</span>
+              <h3 class="card-title">{post.title}</h3>
+              <p class="card-copy">{post.description}</p>
+              <p style="margin: 12px 0 0; font-size: 12px; font-weight: 700; color: var(--vx-muted);">
+                {post.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div style="text-align:center; margin-top: 50px;">
+        <a href="/posts" class="btn btn-light">View All Posts &rarr;</a>
+      </div>
     </div>
   </section>
 
   <!-- Featured Projects -->
   <section class="section">
-    <div class="mb-10 flex items-center justify-between">
-      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
-        Featured Projects
-      </h2>
-      <a
-        href="/projects"
-        class="text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
-      >
-        View all &rarr;
-      </a>
-    </div>
+    <div class="vx-container">
+      <div class="section-heading" style="text-align:left; margin-bottom: 50px;">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Selected work in AI, tooling, and infrastructure.</p>
+      </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {featuredProjects.map((project) => (
-        <article class="card group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-5 transition-all duration-300 hover:border-[var(--color-accent-subtle)] hover:shadow-lg hover:shadow-[var(--color-accent-subtle)]">
-          <div class="mb-3 flex items-center gap-2">
-            <span
-              class={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
-                project.status === "active"
-                  ? "bg-[var(--color-success)]/10 text-[var(--color-success)]"
-                  : "bg-[var(--color-text-dim)]/10 text-[var(--color-text-dim)]"
-              }`}
-            >
-              {project.status}
-            </span>
-          </div>
-          <h3 class="mb-2 font-display text-lg font-semibold leading-snug text-[var(--color-text)]">
-            <a href={project.url} class="after:absolute after:inset-0 transition-colors hover:text-[var(--color-accent)]">
-              {project.title}
-            </a>
-          </h3>
-          <p class="line-clamp-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-            {project.description}
-          </p>
-          {project.tags.length > 0 && (
-            <ul class="mt-4 flex flex-wrap gap-2" role="list">
-              {project.tags.map((tag) => (
-                <li class="inline-block rounded-full bg-[var(--color-accent-subtle)] px-2.5 py-0.5 text-[10px] font-medium text-[var(--color-accent)]">
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          )}
-        </article>
-      ))}
+      <div class="demo-grid">
+        {featuredProjects.map((project) => (
+          <a href={project.url} class="demo-card" style="text-decoration:none;">
+            <div class="demo-card-body">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom: 14px;">
+                <span class={`tag ${project.status === "active" ? "" : ""}`} style={project.status === "active" ? "background: #d1fae5; color: #059669;" : "background: #f3f4f6; color: #6b7280;"}>
+                  {project.status}
+                </span>
+              </div>
+              <h3 class="card-title">{project.title}</h3>
+              <p class="card-copy">{project.description}</p>
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top: 14px;">
+                {project.tags.map((tag) => (
+                  <span class="tag" style="font-size: 10px; padding: 3px 10px;">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div style="text-align:center; margin-top: 50px;">
+        <a href="/projects" class="btn btn-light">View All Projects &rarr;</a>
+      </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section">
-    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-alt)] p-10 text-center sm:p-16">
-      <h2 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
-        Let&rsquo;s Build Something Together
-      </h2>
-      <p class="mx-auto mt-4 max-w-lg text-[var(--color-text-muted)]">
-        I&rsquo;m always open to interesting conversations, collaborations, and
-        new opportunities. Drop me a line!
-      </p>
-      <a
-        href="/contact"
-        class="mt-8 inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-      >
-        Contact Me
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-      </a>
+  <!-- CTA Section (Velixo gradient panel) -->
+  <section class="cta-section">
+    <div class="vx-container">
+      <div class="cta-panel">
+        <h2 class="cta-title">Let&rsquo;s Build Something Together</h2>
+        <p class="cta-copy">Open to interesting conversations, collaborations, and new opportunities.</p>
+        <a href="/contact" class="btn btn-light" style="min-height: 48px;">
+          Contact Me
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16v16H4z" rx="2"/><path d="M22 6l-10 7L2 6"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
