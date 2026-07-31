@@ -7,7 +7,7 @@
   aria-label="Toggle dark mode"
   type="button"
 >
-  <!-- Sun icon (shown in dark mode) -->
+  <!-- Sun icon (shown in light mode — click to go dark) -->
   <svg
     id="sun-icon"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,6 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="hidden"
   >
     <circle cx="12" cy="12" r="4" />
     <path d="M12 2v2" />
@@ -32,7 +31,7 @@
     <path d="m19.07 4.93-1.41 1.41" />
   </svg>
 
-  <!-- Moon icon (shown in light mode) -->
+  <!-- Moon icon (shown in dark mode — click to go light) -->
   <svg
     id="moon-icon"
     xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +43,7 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
+    class="hidden"
   >
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
@@ -59,17 +59,16 @@
   function getPreferredTheme() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    // Default to light
+    return "light";
   }
 
   function applyTheme(theme) {
     const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.add("light");
+    if (theme === "dark") {
+      root.classList.add("dark");
     } else {
-      root.classList.remove("light");
+      root.classList.remove("dark");
     }
     localStorage.setItem(STORAGE_KEY, theme);
     updateIcons(theme);
@@ -78,11 +77,11 @@
   function updateIcons(theme) {
     if (!sunIcon || !moonIcon) return;
     if (theme === "dark") {
+      moonIcon.classList.remove("hidden");
+      sunIcon.classList.add("hidden");
+    } else {
       sunIcon.classList.remove("hidden");
       moonIcon.classList.add("hidden");
-    } else {
-      sunIcon.classList.add("hidden");
-      moonIcon.classList.remove("hidden");
     }
   }
 
@@ -93,11 +92,11 @@
   // Toggle on click
   toggle?.addEventListener("click", () => {
     const root = document.documentElement;
-    const isLight = root.classList.contains("light");
-    applyTheme(isLight ? "dark" : "light");
+    const isDark = root.classList.contains("dark");
+    applyTheme(isDark ? "light" : "dark");
   });
 
-  // Listen for system preference changes
+  // Listen for system preference changes (only if user hasn't set a preference)
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => {

@@ -1,8 +1,52 @@
 @import "tailwindcss";
 
-/* ─── Velixo-inspired Dark Theme ─── */
+/* ─── Velixo-inspired Light Theme (default) ─── */
 @theme {
-  /* Core palette */
+  /* Core palette — LIGHT is default */
+  --color-surface: #fafafa;
+  --color-surface-alt: #f0f0f2;
+  --color-surface-elevated: #ffffff;
+  --color-border: #e0e0e6;
+  --color-border-light: #d0d0d8;
+
+  --color-text: #1a1a22;
+  --color-text-muted: #6b6b78;
+  --color-text-dim: #9898a3;
+
+  --color-accent: #6c63ff;
+  --color-accent-hover: #5b52e8;
+  --color-accent-subtle: rgba(108, 99, 255, 0.10);
+
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* Dark mode overrides (applied via .dark class on :root) */
+  --color-surface-dark: #0f0f11;
+  --color-surface-alt-dark: #1a1a1e;
+  --color-surface-elevated-dark: #23232a;
+  --color-border-dark: #2a2a33;
+  --color-border-light-dark: #3a3a45;
+  --color-text-dark: #e8e8ed;
+  --color-text-muted-dark: #9898a3;
+  --color-text-dim-dark: #6b6b78;
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+}
+
+/* ─── Dark mode overrides ─── */
+:root.dark {
   --color-surface: #0f0f11;
   --color-surface-alt: #1a1a1e;
   --color-surface-elevated: #23232a;
@@ -20,29 +64,6 @@
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-error: #f87171;
-
-  /* Light mode overrides (used via .light class) */
-  --color-surface-light: #fafafa;
-  --color-surface-alt-light: #f0f0f2;
-  --color-surface-elevated-light: #ffffff;
-  --color-border-light-mode: #e0e0e6;
-  --color-border-light-light: #d0d0d8;
-  --color-text-light: #1a1a22;
-  --color-text-muted-light: #6b6b78;
-  --color-text-dim-light: #9898a3;
-
-  /* Typography */
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
-
-  /* Spacing */
-  --spacing-section: 6rem;
-  --spacing-section-sm: 4rem;
-
-  /* Animations */
-  --animate-fade-in: fade-in 0.6s ease-out;
-  --animate-slide-up: slide-up 0.5s ease-out;
 }
 
 @keyframes fade-in {
@@ -69,12 +90,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light mode */
-:root.light body {
-  background-color: var(--color-surface-light);
-  color: var(--color-text-light);
-}
-
 /* Selection */
 ::selection {
   background-color: var(--color-accent-subtle);
@@ -95,10 +110,6 @@ body {
   color: var(--color-text);
 }
 
-:root.light .prose h2 {
-  color: var(--color-text-light);
-}
-
 .prose h3 {
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -109,10 +120,6 @@ body {
 .prose p {
   margin-bottom: 1.25rem;
   color: var(--color-text-muted);
-}
-
-:root.light .prose p {
-  color: var(--color-text-muted-light);
 }
 
 .prose a {
@@ -134,21 +141,12 @@ body {
   border-radius: 4px;
 }
 
-:root.light .prose code {
-  background: var(--color-surface-alt-light);
-}
-
 .prose pre {
   background: var(--color-surface-elevated) !important;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.25rem;
   overflow-x: auto;
-}
-
-:root.light .prose pre {
-  background: var(--color-surface-elevated-light) !important;
-  border-color: var(--color-border-light-mode);
 }
 
 .prose pre code {
@@ -163,18 +161,10 @@ body {
   font-style: italic;
 }
 
-:root.light .prose blockquote {
-  color: var(--color-text-muted-light);
-}
-
 .prose ul, .prose ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
   color: var(--color-text-muted);
-}
-
-:root.light .prose ul, :root.light .prose ol {
-  color: var(--color-text-muted-light);
 }
 
 .prose li {
@@ -193,15 +183,15 @@ body, .prose *, .nav-link, .card {
 
 /* Utility classes */
 .glass {
-  background: rgba(26, 26, 30, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
-:root.light .glass {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: var(--color-border-light-mode);
+:root.dark .glass {
+  background: rgba(26, 26, 30, 0.7);
+  border-bottom-color: var(--color-border);
 }
 
 .section {
